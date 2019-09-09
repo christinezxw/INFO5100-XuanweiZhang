@@ -1,0 +1,130 @@
+Design a Car Rental System
+
+User can:
+1. login user account
+2. select dates
+3. rent a car
+4. review order
+5. cancel order
+
+-----------------------------------------------------
+
+Class: User
+Data: name, password, startDate, endDate, List<String> creditCardInfo, loginStatus
+Behavior:
+loginAccount(){
+	Hashtable accountList;//store all user accounts login name and password
+	if (this.password == accountList[this.name])
+		this.loginStatus = True;
+	else{
+		this.loginStatus = False;
+		return "Login failed!";
+		}
+}
+
+rentCar(){
+	if(this.loginStatus && Car.availableStatus(this.startDate, this.endDate)){
+		new Order;//create a Class Order instance
+		Order.createOrder(Car car, User user);
+	}
+	else
+		return "Please login!";
+}
+
+reviewOrder(){
+	if(this.loginStatus)
+		Order.orderInfo();
+	else
+		return "Please login!";
+}
+
+cancelOrder(){
+	if(this.loginStatus)
+		Order.orderCalcel();
+	else
+		return "Please login!";
+}
+
+-----------------------------------------------------
+
+Class: Car
+Data: brand, List<Date> availableDates, dailyFee, available
+Behavior:
+availableStatus(User.startDate, User.endDate){
+	//check the user's planning date is available for this car or not.
+	if (for (Date date = User.startDate; date <= User.endDate; date++) date exist in this.availableDates;)
+		this.available = True;
+	else{
+		this.available = False;
+		return "Car not available!"
+	}
+}
+
+deleteDates(Order.startDate, Order.endDate){
+	for (Date date = Order.startDate; date <= Order.endDate; date++)
+		delete date from this.availableDates;
+}//dates not available anymore after an order created.
+
+recoverDates(Order.startDate, Order.endDate){
+	for (Date date = Order.startDate; date <= Order.endDate; date++)
+		add date into this.availableDates;
+}//dates  available again after an order canceled.
+
+-----------------------------------------------------
+
+Class: Order
+Data: userName, carBrand, orderFee, startDate, endDate, status
+Behavior:
+createOrder(Car car, User user){
+	this.userName = User.name;
+	this.carBrand = Car.brand;
+	this.startDate = User.startDate;
+	this.endDate = User.endDate;
+	this.status = True;
+	Car.deleteDates(this.startDate, this.endDate);//modify car available dates once the order is created.
+	this.payFee();
+}
+
+totalFee(){
+	this.orderFee = (this.endDate - this.startDate) * Car.dailyFee;
+}//calculate the fee of this order
+
+payFee(){
+	if (CreditCard.makePayment(User.creditCardInfo, this.orderFee) == False)
+		this.orderCalcel();//if not paid, cancel the order
+}//make payment
+
+orderCalcel(){
+	if (this.status){
+		this.status = False;
+		Car.recoverDates(this.startDate, this.endDate);//modify car available dates once the order is canceled.
+	}
+	else
+		return "No order!";
+}
+
+orderInfo(){
+	if (this.status)
+		System.out.print("User " + userName + "rent a " + carBrand + "car. Rent date start from " + startDate + "to "+ endDate + ". The total fee is $" + orderFee);
+	else
+		return "No order!";
+}
+
+-----------------------------------------------------
+
+Class: CreditCard
+Data: creditCardInfo, status
+Behavior:
+cardAvailable(){
+	this.creditCardInfo = User.creditCardInfo;
+	return creditCardInfo.isValid(creditCardInfo);//actually check the card's validation, which is out of the range of this code
+}
+
+makePayment(this.creditCardInfo, Order.orderFee){
+	if(this.cardAvailable()){
+		MAKEPAYMENT(creditCardInfo, orderFee);//actually pay the bill, which is out of the range of this code
+		return True;
+	}
+	else
+		return False;
+}

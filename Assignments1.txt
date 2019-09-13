@@ -1,4 +1,84 @@
-Design a Car Rental System
+INFO 5100 assignments 1
+
+Xuanwei Zhang
+
+*****************************************************
+\\\\\---Design a Traffic Controller System for a Junction---/////
+
+User can:
+1. know traffic junction
+2. control traffic signal in color red, green, yellow
+3. control and configure traffic signal duration
+
+-----------------------------------------------------
+
+Class: Road
+Data: int jamThreshold, direction
+Behavior:
+detectJam(){
+	if (sum(Car.direction == this.direction) > this.jamThreshold){
+		return True;
+	}
+	else{
+		return False;
+	}
+}
+-----------------------------------------------------
+
+Class: Car
+Data: direction, 
+Behavior:
+passCross(){
+	if (this.direction == Road.direction){
+		if(Road.TrafficSignal.state == "green"){
+			Car.direction = null;
+		}
+	}
+}
+
+-----------------------------------------------------
+
+Class: TrafficSignal
+Data: int red, int yellow, int green, state
+Behavior: 
+trafficSignal(int redTime, int yellowTime, int greenTime){
+	this.red = redTime;
+	this.yellow = yellowTime;
+	this.green = greenTime;
+}
+
+durationControl(){
+	for (int i = this.red, i > 0, i --){
+		return state = "red";
+	}
+	for (int i = this.yellow, i > 0, i --){
+		return state = "yellow";
+	}
+	for (int i = this.green, i > 0, i --){
+		return state = "green";
+	}
+}
+
+-----------------------------------------------------
+
+Class: TrafficControl
+Data: List<int> durationTime[redTime, yellowTime, greenTime], extensionTime, 
+Behavior:
+durationSet(){
+	TrafficSignal.trafficSignal(durationTime[0], durationTime[1], durationTime[2]);
+}
+
+durationExtention(Road.detectJam){
+	if (Road.jam){
+		durationTime[0] += extensionTime;
+		durationTime[1] += extensionTime;
+		durationTime[2] += extensionTime;
+	}
+}
+
+*****************************************************
+
+\\\\\---Design a Car Rental System---/////
 
 User can:
 1. login user account
@@ -128,3 +208,204 @@ makePayment(this.creditCardInfo, Order.orderFee){
 	else
 		return False;
 }
+
+*****************************************************
+
+\\\\\---Design a Course Registration Platform---/////
+
+User can:
+1. view courses
+2. register courses without time conflict with registered courses
+3. drop courses
+4. meet credit hours requirement
+5. view registered courses
+
+-----------------------------------------------------
+
+Class: Student
+Data: name, minimumCredit, availableTime
+Behavior:
+registerCourse(Course course){
+	if (course.availableStatus(this.availableTime) && Course.capacity > 0){
+		CourseList.addCourse(course);
+		this.availableTime -= course.meetingTime;
+		Course.capacity --;
+	}
+	else if(course.availableStatus(this.availableTime) == False){
+		return "Course time conflict!";
+	}
+	else if(Course.capacity == 0){
+		return "No more seat remains";
+	}
+}
+
+dropCourse(Course course){
+	if (CourseList.credit - Course.credit > this.minimumCredit){
+		CourseList.dropCourse(course);
+		this.availableTime += course.meetingTime;
+		Course.capacity ++;
+	}
+	else{
+		return "You must add another course to meet the minimum credits before drop!";
+	}
+}
+
+viewRegisteredCourses(){
+	System.out.print("Student " + name + "has registered courses: " + CourseList.courseList + ". The total credits is " + CourseList.credit);
+}
+
+-----------------------------------------------------
+
+Class: Course
+Data: name, meetingTime, credit, capacity
+Behavior:
+availableStatus(Student.availableTime){
+	if (meetingTime is in availableTime){
+		return True;
+	}else{
+		return False;
+	}
+}
+
+-----------------------------------------------------
+
+Class: CourseList
+Data: credit = 0, List<String> courseList
+addCourse(Course course){
+	this.courseList.add(course.name);
+	this.credit += course.credit;
+}
+
+dropCourse(Course course){
+	this.courseList.pop(course.name);
+	this.credit -= course.credit;
+}
+
+*****************************************************
+\\\\\---Design a vending Machine---/////
+
+User can:
+1. put in coins of different denominations
+2. get change
+3. buy different Products
+
+-----------------------------------------------------
+
+Class: User
+Data: drink
+Behavior:
+payCoin(List<Coin> coins){
+	VendingMachine.collectMoney(List<Coin> coins);
+}
+
+selectProduct(Product product){
+	VendingMachine.vendOutProduct(Product product);
+}
+
+-----------------------------------------------------
+
+Class: Coin
+Data: denomination
+
+-----------------------------------------------------
+
+Class: Product
+Data: price, quantityInStock
+
+-----------------------------------------------------
+
+Class: VendingMachine
+Data: balance, change
+Behavior:
+collectMoney(List<Coin> coins){
+	this.balance = sum(coins.denomination in coins);
+}
+
+vendOutProduct(Product product){
+	if (this.balance >= product.price && product.quantityInStock > 0){
+		Product.quantityInStock--;
+		return this.getChange();
+	}
+	else if(this.balance < product.price){
+		return "Not enough money!"
+	}
+	else if(product.quantityInStock == 0){
+		return "No product in stock! Please select another one."
+	}
+}
+getChange(){
+	return this.change = this.balance - product.price;
+}
+
+*****************************************************
+\\\\\---Design a Parking lot---/////
+
+User can:
+1. park a car and get a parking ticket
+2. pay by creditcard
+3. leave the parking lot and get a parking receipt
+
+-----------------------------------------------------
+
+Class: User
+Data: arrivingTime, leavingTime, creditCardInfo
+Behavior:
+parkCar(){
+	this.arrivingTime = LocalTime.now();
+	ChargingSystem.printTicket(Car car, User user);
+}
+
+leaveParkingLot(){
+	this.leavingTime = LocalTime.now();
+	creditCard.makePayment();
+	ChargingSystem.printReceipt();
+}
+
+-----------------------------------------------------
+
+Class: CreditCard
+Data: creditCardInfo, status
+Behavior:
+cardAvailable(){
+	this.creditCardInfo = User.creditCardInfo;
+	return creditCardInfo.isValid(creditCardInfo);//actually check the card's validation, which is out of the range of this code
+}
+
+makePayment(this.creditCardInfo, ChargingSystem.countFee){
+	if(this.cardAvailable()){
+		MAKEPAYMENT(creditCardInfo, countFee);//actually pay the bill, which is out of the range of this code
+		return True;
+	}
+	else
+		return False;
+}
+
+-----------------------------------------------------
+
+Class: Car
+Data: type, number
+
+-----------------------------------------------------
+
+Class: ChargingSystem
+Data: Hashtable priceTable(carType, price), parkingTime, parkingFee
+Behavior:
+countFee(User user){
+	this.parkingTime = User.leavingTime - User.arrivingTime;
+	this.parkingFee = this.priceTable[Car.type] * Car.parkingTime;
+}
+
+printTicket(Car car, User user){
+	System.out.print("Your car " + Car.number + "starts parking from " + User.arrivingTime + ". You will pay " + this.priceTable[Car.type] + "per hour.");
+}
+
+printReceipt(){
+	System.out.print("Your car " + Car.number + "starts parking from " + User.arrivingTime + " to " + User.leavingTime + ". You have paid " + this.parkingFee + " using creditcard.");
+}
+
+*****************************************************
+
+
+
+
+

@@ -120,7 +120,7 @@ public class Assignments2 {
         Ex: employee.getFirstName() -> "ha8l" == true
         employee.getFirstName() -> "hail" == false
      */
-    public void isContainDigit(Employee employee) {
+    public static void isContainDigit(Employee employee) {
         // @TODO
         for (int i = 0; i < employee.getFirstName().length(); i ++) {
             if (Character.isDigit(employee.getFirstName().charAt(i))) {
@@ -131,14 +131,16 @@ public class Assignments2 {
     }
     
     public static void main(String[] args) {
-        String[] employees = new String[]{"3,John,24,3500", "5,Hail,55,7899.90"};
+        String[] employees = new String[]{"3,Joh84n,24,3500", "5,Hail,55,7899.90"};
         Employee[] empList = createEmployees(employees);
         for (Employee e : empList) {
             System.out.println(e.getId() + " " + e.getFirstName() + " " + e.getAge() + " " + e.getSalary());
             fizzBuzz(e);
             System.out.println("calculate Tax = " + calculateTax(e));
-            reverseFirstName(e);
-            System.out.println("reversed firstname: " + e.getFirstName());
+//          reverseFirstName(e);
+//          System.out.println("reversed firstname: " + e.getFirstName());
+            System.out.println("name is Contain Digit: ");
+            isContainDigit(e);
         }
         System.out.println("salaryGreaterThanFiveThousand: " + salaryGreaterThanFiveThousand(empList));
         System.out.println("employeesAgeGreaterThan50: " + employeesAgeGreaterThan50(empList));

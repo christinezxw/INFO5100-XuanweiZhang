@@ -8,3 +8,7 @@ see file: Assignments1.txt
 2019/09/13
 update assignments 1
 see file: Assignments1.txt
+
+2019/09/16
+upload assignments 2
+see file in folder Assignments2: Assignments2.java

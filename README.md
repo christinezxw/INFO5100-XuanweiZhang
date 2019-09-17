@@ -12,3 +12,7 @@ see file: Assignments1.txt
 2019/09/16
 upload assignments 2
 see file in folder Assignments2: Assignments2.java
+
+2019/09/17
+upload assignments 2 as the final version
+see file in folder Assignments2: Assignments2.java and Employee.java

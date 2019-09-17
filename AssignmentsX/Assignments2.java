@@ -19,8 +19,7 @@ public class Assignments2 {
         }
         return sum;
     }
-    
-    
+
     /*
         This method should print either "Fizz", "Buzz" or "FizzBuzz"
         "Fizz" - if id of employee is divisible by 3
@@ -37,8 +36,7 @@ public class Assignments2 {
             System.out.println("Buzz");
         }
     }
-    
-    
+
     /*
         This method should calculate tax for an employee in dollars
         If salary of employee is less than or equal to 2500, tax should be 10%
@@ -54,10 +52,8 @@ public class Assignments2 {
         }else {
             return employee.getSalary() * 0.1;
         }
-        
     }
-    
-    
+
     /*
         We are given two employee objects.
         Implement this method to swap salaries of employees
@@ -68,8 +64,7 @@ public class Assignments2 {
         firstEmployee.setSalary(secondEmployee.getSalary());
         secondEmployee.setSalary(temp);
     }
-    
-    
+
     /*
         Return number of employees whose age is greater than 50
         Note: Employee array is passed, not employee
@@ -84,53 +79,7 @@ public class Assignments2 {
         }
         return sum;
     }
-    
-    
-    /*
-        Implement this method to reverse firstName of employee.
-        Ex. Before: employee.getFirstName() -> "John"
-        After : employee.getFirstName() -> "nhoJ"
-     */
-    public void reverseFirstName(Employee employee) {
-        // @TODO
-        StringBuilder str = new StringBuilder();
-        str.append(employee.getFirstName());
-        str = str.reverse();
-        employee.setFirstName(str.toString());
-    }
-    
-    
-    /*
-        Print "true" if employee's first name contain one or more digits
-        Print "false" if employee's first name doesn't contain any digit
-        Ex: employee.getFirstName() -> "ha8l" == true
-        employee.getFirstName() -> "hail" == false
-     */
-    public static void isContainDigit(Employee employee) {
-        // @TODO
-        for (int i = 0; i < employee.getFirstName().length(); i ++) {
-            if (Character.isDigit(employee.getFirstName().charAt(i))) {
-                System.out.println("True");
-            }
-        }
-        System.out.println("False");
-    }
-    
-    
-     /*
-        Write a method to raise an employee's salary to three times of his/her original salary.
-        Eg: original salary was 1000/month. After using this method, the salary is 3000/month.
-        DO NOT change the input in this method.
-        Try to add a new method in Employee class: public void raiseSalary(double byPercent) 
-        Call this new method.
-     */
-    public static void tripleSalary(Employee employee) {
-        // @TODO
-        employee.raiseSalary(300);
-    }
-    
-    
-    //Additional question for extra credit
+
     /*
         Implement this method to convert String[] to employees array.
         Ex: String[] employees = new String[]{"1,John,24,7500", "2,Hail,28,7899.90"};
@@ -152,6 +101,35 @@ public class Assignments2 {
         return employees;
     }
     
+    /*
+        Implement this method to reverse firstName of employee.
+        Ex. Before: employee.getFirstName() -> "John"
+        After : employee.getFirstName() -> "nhoJ"
+     */
+    public static void reverseFirstName(Employee employee) {
+        // @TODO
+        StringBuilder str = new StringBuilder();
+        str.append(employee.getFirstName());
+        str = str.reverse();
+        employee.setFirstName(str.toString());
+    }
+
+    /*
+        Print "true" if employee's first name contain one or more digits
+        Print "false" if employee's first name doesn't contain any digit
+        Ex: employee.getFirstName() -> "ha8l" == true
+        employee.getFirstName() -> "hail" == false
+     */
+    public static void isContainDigit(Employee employee) {
+        // @TODO
+        for (int i = 0; i < employee.getFirstName().length(); i ++) {
+            if (Character.isDigit(employee.getFirstName().charAt(i))) {
+                System.out.println("True");
+            }
+        }
+        System.out.println("False");
+    }
+    
     public static void main(String[] args) {
         String[] employees = new String[]{"3,Joh84n,24,3500", "5,Hail,55,7899.90"};
         Employee[] empList = createEmployees(employees);
@@ -163,8 +141,6 @@ public class Assignments2 {
 //          System.out.println("reversed firstname: " + e.getFirstName());
             System.out.println("name is Contain Digit: ");
             isContainDigit(e);
-            tripleSalary(e);
-            System.out.println("salary after triple: " + e.getSalary());
         }
         System.out.println("salaryGreaterThanFiveThousand: " + salaryGreaterThanFiveThousand(empList));
         System.out.println("employeesAgeGreaterThan50: " + employeesAgeGreaterThan50(empList));

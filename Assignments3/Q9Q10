@@ -1,0 +1,25 @@
+//this file contains Q9 and Q10
+
+Q9:
+
+Encapsulation is a method to wrap up data by declaring private field to avoid it accessed by other class.
+At the same time, getter sand setter methods are declared public for outside code to access the protected data while some restrictions may be set into the setter method.
+Here is an example:
+public class Phone {
+	private String number;
+	
+	public void setNumber(String number) {
+		if (number.length() != 10) {
+			throw new IllegalArgumentException("phone number length should be 10!");
+		}
+		this.number = number;
+	}
+	
+	public String getNumber() {
+		return number;
+	}
+}
+
+Q10:
+
+Not everything related to a class is declared within it. By abstraction, irrelevant details are declared somewhere else rather than the current class. Abstraction is hiding things aimed at avoiding displaying trivial details to class users while Encapsulation is aimed at protecting important data. 

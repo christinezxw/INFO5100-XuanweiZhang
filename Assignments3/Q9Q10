@@ -1,5 +1,6 @@
 //this file contains Q9 and Q10
 
+
 Q9:
 
 Encapsulation is a method to wrap up data by declaring private field to avoid it accessed by other class.

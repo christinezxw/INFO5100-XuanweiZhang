@@ -25,3 +25,7 @@ Q6:		./Assignments3/ReverseStringByWord.java
 Q7:		./Assignments3/MatrixInSpiral.java
 Q8:		./Assignments3/PAYPALISHIRING.java
 Q9~Q10:	./Assignments3/Q9Q10
+
+2019/10/03
+upload assignments 4 including Q1~Q5
+see files in folder Assignments4

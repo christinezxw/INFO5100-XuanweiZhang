@@ -1,0 +1,12 @@
+Q1:
+
+<the difference between final and finally>
+
+final:
+when used in a field, to make it unchangable after initialization.
+when used in a method, to make its subclasses unable to override it.
+when used in a class, to make it can't be extended by other classes.
+
+finally:
+use by the end of "try{}catch{}", no matter where the procedure goes, it will end up in "finally{}" and excecute the lines within it.
+

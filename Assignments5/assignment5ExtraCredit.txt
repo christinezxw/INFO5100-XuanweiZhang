@@ -1,0 +1,45 @@
+the answer shows in console should be 6, in which b.getAddCount() = 6 and b.getI() = 0;
+
+the operations happend as following explanation:
+
+b.addAll(list):
+	goes into class B and finds an overrided method 'addAll'
+	class B: addAll(list = [1,2,3])
+		1. addCount += c.size()
+		   -->b.addCount = 3
+		2. super.addAll(list = [1,2,3])
+			goes into parent class A and finds origin method 'addAll'
+			class A: addAll(list = [1,2,3])
+				while loop <begin>
+					this.add(it.next()):
+						since child class B overrides method 'add', goes into class B
+						class B: add(it.next())
+							1. addCount ++
+							   --> b.addCount = 4
+							   --> b.addCount = 5
+							   --> b.addCount = 6
+							2. super.add(it.next())
+							goes into parent class A and finds origin method 'add'
+							class A: add(it.next())
+								list.add(it.next())
+								--> b.list = [1]
+								return True
+								--> b.list = [1,2]
+								return True
+								--> b.list = [1,2,3]
+								return True
+				while loop <end>
+				return True
+result: b.addCount = 6, b.list = [1,2,3]
+
+b.getAddCount():
+	class B has method getAddCount, so return field addCount of b
+result: b.getAddCount() = 6
+
+b.getI():
+	class B doesn't override method 'getI', so goes into parent class A:
+	class A: getI()
+		since 'getI' is not override by child class B, though 'this' refers to object b, this.i still points to the 'i' of parent class A, whilch is 0
+result: b.getI() = 0
+
+conclusion: out print 6

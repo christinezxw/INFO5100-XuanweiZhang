@@ -1,0 +1,6 @@
+Q2. Write two differences between ArrayList and LinkedList.
+
+ArrayList stores elements in a continuous memory. When add element, if it runs out of memory in current array, a bigger array is created and old elements are moved into it before adding a new one. When delete an element, remove it first and foward all the others to fill the blank. Thus, it is better to store and access elements in ArrayList but slower in doing adding and deleting.
+
+LinkedList stores elements seperately. An element is stored with its value and the pointer points to the next element. When add element, just move the former point to the new element and set up a new pointer points to the latter one. It's same when delete element. So it is faster manipulating elements in LinkedList without moving other ones. However when search for an element, it needs to search from the very beggining.
+

@@ -37,3 +37,7 @@ see files in folder Assignments5
 2019/10/22
 upload assignments 6 including Q1~Q5
 see files in folder Assignments6
+
+2019/11/04
+upload assignments 7 including Q1~Q4
+see files in folder Assignments7

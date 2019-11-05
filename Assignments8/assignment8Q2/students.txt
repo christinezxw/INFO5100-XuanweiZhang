@@ -1,0 +1,8 @@
+100|Bob|Male
+101|Lily|Female
+102|Ada|Female
+103|Jack|Male
+104|David|Male
+105|Sam|Male
+106|Kevin Smith|Male
+107|Natasha|Female

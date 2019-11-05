@@ -41,3 +41,9 @@ see files in folder Assignments6
 2019/11/04
 upload assignments 7 including Q1~Q4
 see files in folder Assignments7
+
+2019/11/05
+upload assignments 8 including Q1, Q2
+see files in folder Assignments8
+screenshot and readme for two interfaces
+codes in assignment8Q1 and assignment8Q2
